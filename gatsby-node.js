@@ -8,11 +8,10 @@
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
 exports.createPages = async ({ actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
   createPage({
-    path: "/using-dsg",
-    component: require.resolve("./src/templates/using-dsg.js"),
-    context: {},
-    defer: true,
-  })
-}
+    path: '/404/',
+    component: require.resolve('./src/pages/404.tsx'),
+    context: {}, // Ensure this is not null or undefined
+  });
+};
