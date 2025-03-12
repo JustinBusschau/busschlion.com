@@ -42,7 +42,14 @@ export default function ContactForm() {
   }
 
   return (
-    <StyledForm {...form} onSubmit={form.handleSubmit(onSubmit)}>
+    <StyledForm
+      {...form}
+      onSubmit={form.handleSubmit(onSubmit)}
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      name="contact"
+      method="POST"
+      >
       <StyledFormItem>
         <StyledFormLabel>Name</StyledFormLabel>
         <StyledFormControl>

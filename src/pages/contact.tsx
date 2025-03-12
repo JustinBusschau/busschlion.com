@@ -82,6 +82,8 @@ const Icon = styled.div`
 `;
 
 const ContactPage = ({ data }) => {
+  const siteMeta = data.allContentfulSiteMeta.nodes[0];
+
   return (
     <Layout data={data}>
       <ContactContainer>
@@ -106,15 +108,11 @@ const ContactPage = ({ data }) => {
               <div className="space-y-6">
                 <InfoContainer>
                   <Icon as={Mail} />
-                  <InfoText>info@busschlion.com</InfoText>
+                  <InfoText>{siteMeta.infoEmail}</InfoText>
                 </InfoContainer>
                 <InfoContainer>
                   <Icon as={Phone} />
-                  <InfoText>+1 (555) 123-4567</InfoText>
-                </InfoContainer>
-                <InfoContainer>
-                  <Icon as={MapPin} />
-                  <InfoText>123 Business Street, Tech City, TC 12345</InfoText>
+                  <InfoText>{siteMeta.phoneNumber}</InfoText>
                 </InfoContainer>
               </div>
             </div>
