@@ -40,10 +40,10 @@ export default function ContactForm() {
     setIsValid(false);
   }
 
-  const handleSubmit = () => {
-    console.log(`name: ${name}, email: ${email}, company: ${company}, message: ${message}`);
-    setTimeout(() => resetForm(), 1000);
-  }
+  // const handleSubmit = () => {
+  //   console.log(`name: ${name}, email: ${email}, company: ${company}, message: ${message}`);
+  //   setTimeout(() => resetForm(), 1000);
+  // }
 
   return (
     <>
@@ -55,14 +55,14 @@ export default function ContactForm() {
       netlify-honeypot="honorific"
       method="POST"
       target="dummyframe"
-      onSubmit={handleSubmit}
+      // onSubmit={handleSubmit}
       >
       <input type="hidden" name="form-name" value="contact" />
       <div style={{ display: 'none' }}>
         <StyledFormItem>
           <StyledFormLabel>Honorific</StyledFormLabel>
           <StyledFormControl>
-            <StyledInput placeholder="Mr" />
+            <StyledInput placeholder="Mr" value="" />
           </StyledFormControl>
         </StyledFormItem>
       </div>
