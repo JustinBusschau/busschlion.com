@@ -20,6 +20,7 @@ module.exports = {
     siteUrl: `https://busschlion.com/`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-image`,
     {
