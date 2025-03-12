@@ -3,6 +3,29 @@ import { useEffect, useState } from 'react';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
+
+const NotFoundContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  padding: 2rem;
+`;
+
+const NotFoundTitle = styled.h1`
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+`;
+
+const NotFoundText = styled.p`
+  font-size: 1.125rem;
+  color: var(--text-muted-foreground);
+`;
 
 const NotFoundPage = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -17,12 +40,12 @@ const NotFoundPage = ({ data }) => {
 
   return (
     <Layout data={data}>
-      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
-        <h1 className="text-4xl font-bold mb-4">404: Page Not Found</h1>
-        <p className="text-lg text-muted-foreground">
+      <NotFoundContainer>
+        <NotFoundTitle>404: Page Not Found</NotFoundTitle>
+        <NotFoundText>
           You just hit a route that doesn&#39;t exist... the sadness.
-        </p>
-      </div>
+        </NotFoundText>
+      </NotFoundContainer>
     </Layout>
   );
 };
