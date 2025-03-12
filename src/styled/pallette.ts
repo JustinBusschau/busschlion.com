@@ -18,6 +18,7 @@ export const __destructive = '0 84.2% 60.2%';
 export const __destructive_foreground = '60 9.1% 97.8%';
 export const __ring = '20 14.3% 4.1%';
 export const __radius = '0.5rem';
+export const __error_colour = '21, 100%, 50%';
 
 export const __background_dark = '240 10% 3.9%';
 export const __foreground_dark = '0 0% 98%';
@@ -39,3 +40,4 @@ export const __destructive_dark = '0 62.8% 30.6%';
 export const __destructive_foreground_dark = '0 0% 98%';
 export const __ring_dark = '240 4.9% 83.9%';
 export const __radius_dark = '0.5rem';
+export const __error_colour_dark = '0, 91%, 41%';

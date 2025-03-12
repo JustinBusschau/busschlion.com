@@ -24,9 +24,13 @@ export const StyledFormControl = styled.div`
   flex-direction: column;
 `;
 
-export const StyledFormMessage = styled.div`
+export const StyledFormMessage = styled.p`
   font-size: 0.875rem;
-  color: hsl(${pallette.__accent});
+  color: hsl(${pallette.__error_colour});
+  font-weight: bold;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
 `;
 
 export const StyledInput = styled.input`

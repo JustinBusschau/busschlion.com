@@ -1,7 +1,4 @@
-import * as React from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import {
   StyledForm,
@@ -12,41 +9,69 @@ import {
   StyledInput,
   StyledTextarea,
 } from '../../styled/ContactForm';
-
-const formSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  company: z.string().min(2, 'Company name must be at least 2 characters'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-});
+import validator from 'validator';
 
 export default function ContactForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      company: '',
-      message: '',
-    },
-  });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [company, setCompany] = useState('');
+  const [message, setMessage] = useState('');
+  const [isValid, setIsValid] = useState(false);
+
+  const validateEmail = (e) => {
+    var email = e.target.value;
+    if (validator.isEmail(email)) {
+      setEmailError('');
+      setIsValid(true);
+    } else {
+      setEmailError('Invalid email address');
+      setIsValid(false);
+    }
+    setEmail(email)
+  }
+
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setEmailError('');
+    setCompany('');
+    setMessage('');
+    setIsValid(false);
+  }
+
+  const handleSubmit = () => {
+    console.log(`name: ${name}, email: ${email}, company: ${company}, message: ${message}`);
+    setTimeout(() => resetForm(), 1000);
+  }
 
   return (
+    <>
+    <iframe title="dummyframe" name="dummyframe" id="dummyframe" style={{ display: 'none' }}></iframe>
     <StyledForm
-      {...form}
-      data-netlify="true"
-      netlify-honeypot="bot-field"
       name="contact"
+      data-netlify="true"
+      netlify
+      netlify-honeypot="honorific"
       method="POST"
+      target="dummyframe"
+      onSubmit={handleSubmit}
       >
+      <input type="hidden" name="form-name" value="contact" />
+      <div style={{ display: 'none' }}>
+        <StyledFormItem>
+          <StyledFormLabel>Honorific</StyledFormLabel>
+          <StyledFormControl>
+            <StyledInput placeholder="Mr" />
+          </StyledFormControl>
+        </StyledFormItem>
+      </div>
+
       <StyledFormItem>
         <StyledFormLabel>Name</StyledFormLabel>
         <StyledFormControl>
-          <StyledInput placeholder="John Doe" {...form.register('name')} />
+          <StyledInput placeholder="John Doe" onChange={(e) => setName(e.target.value)}/>
         </StyledFormControl>
-        <StyledFormMessage>
-          {form.formState.errors.name?.message}
-        </StyledFormMessage>
       </StyledFormItem>
 
       <StyledFormItem>
@@ -55,11 +80,12 @@ export default function ContactForm() {
           <StyledInput
             placeholder="john@example.com"
             type="email"
-            {...form.register('email')}
+            value={email}
+            onChange={(e) => validateEmail(e)}
           />
         </StyledFormControl>
         <StyledFormMessage>
-          {form.formState.errors.email?.message}
+          {emailError}
         </StyledFormMessage>
       </StyledFormItem>
 
@@ -68,12 +94,10 @@ export default function ContactForm() {
         <StyledFormControl>
           <StyledInput
             placeholder="Your Company"
-            {...form.register('company')}
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
           />
         </StyledFormControl>
-        <StyledFormMessage>
-          {form.formState.errors.company?.message}
-        </StyledFormMessage>
       </StyledFormItem>
 
       <StyledFormItem>
@@ -81,17 +105,22 @@ export default function ContactForm() {
         <StyledFormControl>
           <StyledTextarea
             placeholder="Tell us about your project"
-            {...form.register('message')}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
           />
         </StyledFormControl>
-        <StyledFormMessage>
-          {form.formState.errors.message?.message}
-        </StyledFormMessage>
       </StyledFormItem>
 
-      <Button type="submit" className="w-full">
-        Send Message
-      </Button>
+      {name && email && company && message && isValid === true ? (
+        <Button type="submit" className="w-full">
+          Send Message
+        </Button>
+      ) : (
+        <Button type="submit" className="w-full" disabled>
+          Send Message
+        </Button>
+      )}
     </StyledForm>
+    </>
   );
 }
