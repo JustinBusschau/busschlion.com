@@ -5,3 +5,9 @@
 - Gatsby 5
 - Styled Components
 - Contentful for content
+
+## TODO
+
+- [ ] Move all copy to Contentful
+- [ ] Add portfolio / projects
+- [ ] Add section for articles
