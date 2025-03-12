@@ -10,7 +10,10 @@ const Layout = ({ data, children }) => {
     <>
       <GlobalStyles />
       <LayoutWrapper>
-        <Seo />
+        <Seo
+          description={data.allContentfulSiteMeta.nodes[0].tagLine}
+          title={data.allContentfulSiteMeta.nodes[0].siteName}
+        />
         <Header />
         <main>{children}</main>
         <Footer data={data} />
