@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '../ui/button';
-import { useToast } from '../../hooks/use-toast';
 import {
   StyledForm,
   StyledFormControl,
@@ -22,7 +21,6 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
-  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,18 +31,9 @@ export default function ContactForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    toast({
-      title: 'Message sent!',
-      description: "We'll get back to you as soon as possible.",
-    });
-    form.reset();
-  }
-
   return (
     <StyledForm
       {...form}
-      onSubmit={form.handleSubmit(onSubmit)}
       data-netlify="true"
       netlify-honeypot="bot-field"
       name="contact"
