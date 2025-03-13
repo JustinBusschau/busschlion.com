@@ -19,6 +19,9 @@ export const __destructive_foreground = '60 9.1% 97.8%';
 export const __ring = '20 14.3% 4.1%';
 export const __radius = '0.5rem';
 export const __error_colour = '21, 100%, 50%';
+export const __logo_background = '210, 12%, 29%'; // #424b54
+export const __logo_stroke = '0, 100%, 30%'; // #990000
+export const __logo_fill = '21, 100%, 53%'; // #FF6611
 
 export const __background_dark = '240 10% 3.9%';
 export const __foreground_dark = '0 0% 98%';
