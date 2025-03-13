@@ -40,10 +40,10 @@ export default function ContactForm() {
     setIsValid(false);
   }
 
-  // const handleSubmit = () => {
-  //   console.log(`name: ${name}, email: ${email}, company: ${company}, message: ${message}`);
-  //   setTimeout(() => resetForm(), 1000);
-  // }
+  const handleSubmit = () => {
+    console.log(`name: ${name}, email: ${email}, company: ${company}, message: ${message}`);
+    setTimeout(() => resetForm(), 1000);
+  }
 
   return (
     <>
@@ -55,14 +55,14 @@ export default function ContactForm() {
       netlify-honeypot="honorific"
       method="POST"
       target="dummyframe"
-      // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       >
       <input type="hidden" name="form-name" value="contact" />
       <div style={{ display: 'none' }}>
         <StyledFormItem>
           <StyledFormLabel>Honorific</StyledFormLabel>
           <StyledFormControl>
-            <StyledInput placeholder="Mr" value="" />
+            <StyledInput name="honorific" id="honorific" placeholder="Mr" />
           </StyledFormControl>
         </StyledFormItem>
       </div>
@@ -70,7 +70,7 @@ export default function ContactForm() {
       <StyledFormItem>
         <StyledFormLabel>Name</StyledFormLabel>
         <StyledFormControl>
-          <StyledInput placeholder="John Doe" onChange={(e) => setName(e.target.value)}/>
+          <StyledInput name="name" id="name" placeholder="John Doe" onChange={(e) => setName(e.target.value)}/>
         </StyledFormControl>
       </StyledFormItem>
 
@@ -78,6 +78,7 @@ export default function ContactForm() {
         <StyledFormLabel>Email</StyledFormLabel>
         <StyledFormControl>
           <StyledInput
+            name="email"
             placeholder="john@example.com"
             type="email"
             value={email}
@@ -93,6 +94,8 @@ export default function ContactForm() {
         <StyledFormLabel>Company</StyledFormLabel>
         <StyledFormControl>
           <StyledInput
+            name="company"
+            id="company"
             placeholder="Your Company"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
@@ -104,6 +107,8 @@ export default function ContactForm() {
         <StyledFormLabel>Message</StyledFormLabel>
         <StyledFormControl>
           <StyledTextarea
+            name="message"
+            id="message"
             placeholder="Tell us about your project"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
