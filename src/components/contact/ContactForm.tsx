@@ -70,7 +70,7 @@ export default function ContactForm() {
       <StyledFormItem>
         <StyledFormLabel>Name</StyledFormLabel>
         <StyledFormControl>
-          <StyledInput name="name" id="name" placeholder="John Doe" onChange={(e) => setName(e.target.value)}/>
+          <StyledInput name="name" id="name" placeholder="John Doe" value={name} onChange={(e) => setName(e.target.value)}/>
         </StyledFormControl>
       </StyledFormItem>
 
